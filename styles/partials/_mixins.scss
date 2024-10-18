@@ -1,0 +1,26 @@
+@use './variables' as *;
+
+@mixin tablet {
+  @media screen and (min-width: $tablet-breakpoint) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: $desktop-breakpoint) {
+    @content;
+  }
+}
+
+@mixin box-sizing {
+  box-sizing: border-box;
+}
+
+@mixin underline {
+    &::after {
+      border-bottom: 2px solid white;
+      content: "";
+      position: absolute;
+      inset: 0;
+    }
+  }

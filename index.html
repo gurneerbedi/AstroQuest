@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AstroQuest</title>
+    <link rel="stylesheet" href="./styles/home.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./scripts/index.js">defer </script>
+   
+</head>
+
+<body>
+
+  <header class="navbar">
+    <div class="navbar__container">
+      <a href="#" class="navbar__logo">AstroQuest</a>
+      <nav class="navbar__menu">
+        <ul class="navbar__list">
+          <li class="navbar__item">
+            <a href="#about" class="navbar__link">About</a>
+          </li>
+          <li class="navbar__item">
+            <a href="#search" class="navbar__link">Search</a>
+          </li>
+          <li class="navbar__item">
+            <a href="#asteroids" class="navbar__link">Asteroids</a>
+          </li>
+          <li class="navbar__item">
+            <a href="#contact" class="navbar__link">Contact</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="navbar__toggle">
+        <span class="navbar__toggle-bar"></span>
+        <span class="navbar__toggle-bar"></span>
+        <span class="navbar__toggle-bar"></span>
+      </div>
+    </div>
+  </header>
+    <header class="header">
+        <a href="/index.html" class="header__link">
+        </a>
+        <nav class="nav">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a class="nav__link nav__link--highlighted" href="/index.html">Home</a>
+            </li>
+           <li class="nav__item">
+            <a class="nav__link " href="/index.html">Search</a>
+           </li>
+          </ul>
+        </nav>
+      </header>
+<section class="hero">
+  <div class="hero__content">
+    <h1 class="hero__title">AstroQuest</h1>
+    <p class="hero__subtitle">Browse detailed information about asteroids approaching Earth using NeoWs.</p>
+    <a href="#search" class="hero__cta">Search for Asteroids</a>
+    <form class="hero__search-form" action="#" method="GET">
+      <input type="text" class="hero__search-input" placeholder="Enter a date (YYYY-MM-DD) or asteroid ID"
+        aria-label="Search for Asteroids" />
+      <button type="submit" class="hero__search-button">Search</button>
+    </form>
+  </div>
+</section>
+    <section class="about">
+      <div class="about__container">
+        <h2 class="about__title">What is NeoWs?</h2>
+        <p class="about__text">
+          NeoWs is a NASA API providing information on Near-Earth Objects. You can search for asteroids based on their
+          closest approach date, look up asteroids by their ID, or browse all known asteroids.
+        </p>
+        <a ref="https://www.nasa.gov/asteroid-program" class="about__link" target="_blank">Learn more about NASA’s asteroid
+          program</a>
+      </div>
+    </section>
+    <section class="asteroid-results">
+      <div class="asteroid-results__container">
+        <h2 class="asteroid-results__title">Near-Earth Asteroids</h2>
+        <div class="asteroid-results__grid" id="asteroidGrid">
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="social-icons">
+        <a href="https://www.nasa.gov/" class="Nasa-website">🌐</a>
+        <a href="https://x.com/nasaearth?lang=en" class="Nasa-twitter">🐦</a>
+        <a href="https://www.instagram.com/nasa/?hl=en" class="Nasa-instagram">📷</a>
+        <a href="https://api.nasa.gov/" class="Nasa-api">🔗</a>
+    </div>
+      <div class="footer-bottom">
+      <p>2024 Explore Near-Earth Asteroids. All rights reserved.</p>
+    </div>
+    </footer>
+</body>
+</html>
