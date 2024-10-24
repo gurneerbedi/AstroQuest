@@ -35,21 +35,46 @@ async function fetchAsteroids(startDate, endDate) {
 function createAsteroidCards(data) {
     const asteroidContainer = document.getElementById("asteroidGrid");
     asteroidContainer.innerHTML = ""; 
+
+    // Create an array to hold all asteroids with their details
+    const allAsteroids = [];
+
     // Loop through the asteroid data
     Object.values(data.near_earth_objects).forEach((asteroidsForDate) => {
         asteroidsForDate.forEach((asteroid) => {
-            const asteroidCard = document.createElement("div");
-            asteroidCard.classList.add("asteroid-card"); 
-            // Append asteroid details to the card
-            asteroidCard.innerHTML = `
-                <h3>${asteroid.name}</h3>
-                <p>Closest Approach Date: ${asteroid.close_approach_data[0].close_approach_date}</p>
-                <p>Distance from Earth: ${asteroid.close_approach_data[0].miss_distance.kilometers} km</p>
-                <p>Estimated Diameter: ${asteroid.estimated_diameter.kilometers.estimated_diameter_max.toFixed(2)} km</p>
-                <p>Velocity: ${asteroid.close_approach_data[0].relative_velocity.kilometers_per_hour} km/h</p>
-            `;
-            // Append the card to the container
-            asteroidContainer.appendChild(asteroidCard);
+            // Extract relevant data
+            const closestApproachDate = asteroid.close_approach_data[0].close_approach_date;
+            const distance = asteroid.close_approach_data[0].miss_distance.kilometers;
+            const diameter = asteroid.estimated_diameter.kilometers.estimated_diameter_max;
+            const velocity = asteroid.close_approach_data[0].relative_velocity.kilometers_per_hour;
+
+            // Push asteroid data into the array
+            allAsteroids.push({
+                name: asteroid.name,
+                closestApproachDate: new Date(closestApproachDate), // Convert to Date object for sorting
+                distance,
+                diameter,
+                velocity,
+            });
         });
+    });
+
+    // Sort the array by estimated diameter in descending order
+    allAsteroids.sort((a, b) => b.diameter - a.diameter);
+
+    // Create and append the sorted cards
+    allAsteroids.forEach((asteroid) => {
+        const asteroidCard = document.createElement("div");
+        asteroidCard.classList.add("asteroid-card"); 
+        // Append asteroid details to the card
+        asteroidCard.innerHTML = `
+            <h3>${asteroid.name}</h3>
+            <p>Closest Approach Date: ${asteroid.closestApproachDate.toISOString().split('T')[0]}</p>
+            <p>Distance from Earth: ${asteroid.distance} km</p>
+            <p>Estimated Diameter: ${asteroid.diameter.toFixed(2)} km</p>
+            <p>Velocity: ${asteroid.velocity} km/h</p>
+        `;
+        // Append the card to the container
+        asteroidContainer.appendChild(asteroidCard);
     });
 }
